@@ -1,8 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public int coins;
     public int health = 100;
     [SerializeField] private float moveSpeed = 5f;
     public float jumpForce = 10f;
@@ -18,7 +20,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public int extraJumpsValue = 1;
-    private int extraJumps; 
+    private int extraJumps;
+
+    public Image healthImage;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,7 +57,8 @@ public class Player : MonoBehaviour
         }
 
         SetAnimation(moveInput);
-        
+
+        healthImage.fillAmount = health / 100f;
     }
     private void FixedUpdate()
     {
